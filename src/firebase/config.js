@@ -5,14 +5,23 @@ import { getFirestore } from "firebase/firestore";
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyCFoBsWolKm9tGR94YVl1HTOUsYaIz_Mvk",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain: "miniblog-18d38.firebaseapp.com",
   projectId: "miniblog-18d38",
   storageBucket: "miniblog-18d38.firebasestorage.app",
   messagingSenderId: "693813909619",
-  appId: "1:693813909619:web:3343c382de121b77c4f206"
+  appId: import.meta.env.VITE_FIREBASE_APP_ID
 };
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
