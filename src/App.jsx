@@ -8,10 +8,10 @@ import Footer from './components/Footer'
 function App() {
   return (
     <>
-      <div>
+      <div className='App'>
         <BrowserRouter>
           <Navbar/>
-          <div className='container'>
+          <div className="container">
             <Routes>
               <Route path='/' element={<Home/>}/>
               <Route path='/about' element={<About/>}/>
