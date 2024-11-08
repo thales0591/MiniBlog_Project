@@ -8,7 +8,7 @@ const initialState = {
 };
 
 const insertReducer = (state, action) => {
-  switch (action.ype) {
+  switch (action.type) {
     case "LOADING":
       return { loading: true, error: null };
     case "INSERTED_DOC":
@@ -19,45 +19,34 @@ const insertReducer = (state, action) => {
       return state;
   }
 };
-export const useInsertDoc = (docCollection) => {
+export const useInsertDocument = (docCollection) => {
   const [response, dispatch] = useReducer(insertReducer, initialState);
 
-  //deal with memory leak
-  const [cancelled, setCancelled] = useState(false);
-
-  const checkCancelledBeforeDispatch = (action) => {
-    if (!cancelled) {
-      dispatch(action);
-    }
-  };
-
   const insertDocument = async (document) => {
-    checkCancelledBeforeDispatch({
+    dispatch({
       type: "LOADING",
     });
     try {
-      const newDocument = { ...document, createDat: Timestamp.now() };
+      const newDocument = { ...document, createDate: Timestamp.now() };
 
       const insertedDocument = await addDoc(
         collection(db, docCollection),
         newDocument
       );
 
-      checkCancelledBeforeDispatch({
+      dispatch({
         type: "INSERTED_DOC",
         payload: insertedDocument,
       });
     } catch (error) {
-      checkCancelledBeforeDispatch({
+      dispatch({
         type: "ERROR",
         payload: error.message,
       });
     }
   };
 
-  useEffect(() => {
-    return () => setCancelled(true);
-  }, []);
+ 
 
   return { insertDocument, response };
 };

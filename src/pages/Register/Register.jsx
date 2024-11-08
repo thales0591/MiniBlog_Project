@@ -28,7 +28,6 @@ const Register = () => {
         return
     }
     const res = await createUser(user)
-    console.log(res)
   };
 
   useEffect(() => {
@@ -38,7 +37,6 @@ const Register = () => {
       setError(authError)
     }
   }, [authError])
-
   return (
     <div className={styles.register}>
       <h1>Cadastre-se para postar</h1>
