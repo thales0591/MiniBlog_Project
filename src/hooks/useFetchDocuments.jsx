@@ -38,16 +38,16 @@ export const useFetchDocuments = (docCollection, search = null, uid = null) => {
           );
         });
         setLoading(false);
+        console.log(documents)
       } catch (error) {
         console.log(error);
         setError(error.message);
 
         setLoading(false);
       }
-
-      loadData();
     }
-  }, [docCollection, search, uid, cancelled]);
+    loadData();
+  }, [docCollection, search, uid, cancelled, documents]);
 
   useEffect(() => {
     return () => setCancelled(true);
