@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 const PostDetails = ({post}) => {
   return (
-    <div>
+    <div className={styles.post_detail}>
         <img src={post.image} alt={post.title} />
         <h2>{post.title}</h2>
         <p>{post.createdBy}</p>
