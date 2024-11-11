@@ -2,7 +2,7 @@ import styles from "./PostDetails.module.css"
 import { Link } from "react-router-dom"
 import PropTypes from 'prop-types'
 
-const PostDetails = ({post}) => {
+ const PostDetails = ({post}) => {
   return (
     <div className={styles.post_detail}>
         <img src={post.image} alt={post.title} />
@@ -23,8 +23,8 @@ PostDetails.propTypes = {
       title: PropTypes.string.isRequired,
       createdBy: PropTypes.string.isRequired,
       arrayTags: PropTypes.arrayOf(PropTypes.string).isRequired,
-      id: PropTypes.number.isRequired,
+      id: PropTypes.string.isRequired,
     }).isRequired,
   };
 
-export default PostDetails
+  export default PostDetails
