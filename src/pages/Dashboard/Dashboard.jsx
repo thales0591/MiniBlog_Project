@@ -20,7 +20,7 @@ const Dashboard = () => {
     return <p>Carregando...</p>
   }
   return (
-    <div>
+    <div className={styles.dashboard}>
         <h1>Dashboard</h1>
         <p>Gerencie os seus posts</p>
         {posts == null ? (
@@ -30,12 +30,12 @@ const Dashboard = () => {
           </div>
           ) : (
             <>
-            <div>
+            <div className={styles.post_header}>
               <span>Título</span>
               <span>Ações</span>
             </div>
             {posts.map((post) => (
-              <div key={post.id}>
+              <div key={post.id} className={styles.post_row}>
                 <p>{post.title}</p>
                 <div>
                   <Link to={`/posts/${post.id}`} className="btn btn-outline">Ver</Link>
