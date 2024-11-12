@@ -2,8 +2,8 @@ import styles from "./EditPost.module.css";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams} from "react-router-dom";
 import {useAuthValue} from "../../context/AuthContext.jsx"
-import { useInsertDocument } from "../../hooks/useInsertDocument";
 import {useFetchDocument} from "../../hooks/useFetchDocument.jsx"
+import { useUpdateDocument } from "../../hooks/useUpdateDocument.jsx";
 
 const EditPost = () => {
   const {id} = useParams()
@@ -27,7 +27,7 @@ const EditPost = () => {
 
   const {user} = useAuthValue()
 
-  const {insertDocument, response} = useInsertDocument("posts")
+  const {updateDocument, response} = useUpdateDocument("posts")
 
   const navigate = useNavigate()
 
@@ -49,19 +49,22 @@ const EditPost = () => {
       return setFormError("Por favor, preencha todos os campos.")
     }
 
-    insertDocument({
-      title,
+
+    const data = {
+        title,
       image,
       body, 
       arrayTags,
       uid: user.uid,
       createdBy: user.displayName
-    });
+    }
+    
+    updateDocument(id, data);
    
 
-    // redirect to home page
+    // redirect to dashboard
 
-    navigate("/")
+    navigate("/dashboard")
    
   };
   return (
