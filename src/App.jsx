@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { onAuthStateChanged } from 'firebase/auth'
 
 //context
-import { AuthProvider } from './context/authContext'
+import { AuthProvider } from './context/AuthContext'
 
 //hooks
 import { useAuthentication } from './hooks/useAuthentication'
@@ -27,11 +27,11 @@ function App() {
   const {auth} = useAuthentication()
 
   const loadingUser = user === undefined
+    
+  useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       setUser(user)
     })
-  useEffect(() => {
-
   }, [auth])
 
   if (loadingUser) {
