@@ -51,8 +51,9 @@ export const useAuthentication = () => {
 
       if (error.code == "auth/email-already-in-use") {
         systemErrorMessage = "Ops! E-mail já cadastrado.";
-      } else if(error.code == "auth/weak-password") {
-        systemErrorMessage = "Senha muito fraca! Por favor, insira pelo menos 6 caracteres."
+      } else if (error.code == "auth/weak-password") {
+        systemErrorMessage =
+          "Senha muito fraca! Por favor, insira pelo menos 6 caracteres.";
       } else {
         systemErrorMessage = "Ocorreu um erro, por favor tente mais tarde.";
       }

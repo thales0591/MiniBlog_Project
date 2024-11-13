@@ -1,15 +1,6 @@
 import { useState, useEffect } from "react";
 import { db } from "../firebase/config";
-import {
-  collection,
-  query,
-  orderBy,
-  onSnapshot,
-  where,
-  QuerySnapshot,
-  doc,
-  getDoc
-} from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
 import { getDataConnect } from "firebase/data-connect";
 
 export const useFetchDocument = (docCollection, id) => {
@@ -27,16 +18,15 @@ export const useFetchDocument = (docCollection, id) => {
       setLoading(true);
 
       try {
-        const docRef = await doc(db, docCollection, id)
-        const docSnap = await getDoc(docRef)
+        const docRef = await doc(db, docCollection, id);
+        const docSnap = await getDoc(docRef);
 
-        setDocument(docSnap.data())
+        setDocument(docSnap.data());
         setLoading(false);
       } catch (error) {
-        console.log(error)
-        setError(error.message)
+        console.log(error);
+        setError(error.message);
         setLoading(false);
-
       }
     }
     loadDocument();
