@@ -12,7 +12,7 @@ const firebaseConfig = {
   projectId: "miniblog-18d38",
   storageBucket: "miniblog-18d38.firebasestorage.app",
   messagingSenderId: "693813909619",
-  appId: import.meta.env.VITE_FIREBASE_APP_ID
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
 };
 
 // Initialize Firebase
@@ -20,6 +20,6 @@ const app = initializeApp(firebaseConfig);
 
 const db = getFirestore(app);
 
-const auth = getAuth(app)
+const auth = getAuth(app);
 
-export {db, auth};
+export { db, auth };

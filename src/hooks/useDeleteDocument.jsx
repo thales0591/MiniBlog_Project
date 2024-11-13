@@ -27,20 +27,16 @@ export const useDeleteDocument = (docCollection) => {
       type: "LOADING",
     });
     try {
-
-      const deletedDocument = await deleteDoc(doc(db, docCollection,id))
+      const deletedDocument = await deleteDoc(doc(db, docCollection, id));
 
       dispatch({
         type: "DELETED_DOC",
         payload: deletedDocument,
       });
-
     } catch (error) {
-
       dispatch({
         type: "ERROR",
         payload: error.message,
-
       });
     }
   };

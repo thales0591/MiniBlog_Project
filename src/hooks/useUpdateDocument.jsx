@@ -1,6 +1,6 @@
-import { useState, useEffect, useReducer } from "react";
+import { useReducer } from "react";
 import { db, auth } from "../firebase/config.js";
-import { updateDoc, doc, getDoc} from "firebase/firestore";
+import { updateDoc, doc, getDoc } from "firebase/firestore";
 
 const initialState = {
   loading: null,
@@ -28,9 +28,9 @@ export const useUpdateDocument = (docCollection) => {
     });
 
     try {
-      const docRef = await doc(db, docCollection, docId)
+      const docRef = await doc(db, docCollection, docId);
 
-      const updatedDocument = await updateDoc(docRef, data)
+      const updatedDocument = await updateDoc(docRef, data);
 
       dispatch({
         type: "UPDATED_DOC",
@@ -43,8 +43,6 @@ export const useUpdateDocument = (docCollection) => {
       });
     }
   };
-
- 
 
   return { updateDocument, response };
 };

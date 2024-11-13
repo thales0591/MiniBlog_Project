@@ -6,7 +6,6 @@ import {
   orderBy,
   onSnapshot,
   where,
-  QuerySnapshot,
 } from "firebase/firestore";
 
 export const useFetchDocuments = (docCollection, search = null, uid = null) => {
@@ -31,9 +30,17 @@ export const useFetchDocuments = (docCollection, search = null, uid = null) => {
         //search
         //dashboard
         if (search) {
-          q = await query(collectionRef, where("arrayTags", "array-contains", search), orderBy("createdAt","desc"))
+          q = await query(
+            collectionRef,
+            where("arrayTags", "array-contains", search),
+            orderBy("createdAt", "desc")
+          );
         } else if (uid) {
-          q = await query(collectionRef, where("uid", "==", uid), orderBy("createdAt","desc"))
+          q = await query(
+            collectionRef,
+            where("uid", "==", uid),
+            orderBy("createdAt", "desc")
+          );
         } else {
           q = await query(collectionRef, orderBy("createdAt", "desc"));
         }
@@ -47,7 +54,7 @@ export const useFetchDocuments = (docCollection, search = null, uid = null) => {
           );
         });
         setLoading(false);
-        console.log(documents)
+        console.log(documents);
       } catch (error) {
         console.log(error);
         setError(error.message);
